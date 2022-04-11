@@ -1,21 +1,16 @@
-import Tools from "../components/Tools";
-import {useEffect, useState} from "react";
-import Services from '../services/services'
-import {Service} from "../types";
+import NewTab from "./NewTab";
+import {HashRouter as Router, Routes} from "react-router-dom";
+import {Route} from "react-router";
 
 const Main = () => {
 
-    const [service, setService] = useState<Service>();
-
-    const check = () => {
-        Services.get('https://www.google.com').then(resp => {
-            setService(resp)
-        })
-    }
-
-    useEffect(() => check(), [])
-
-    return service ? <Tools service={service} /> : null
+    return <div>
+        <Router>
+            <Routes>
+                <Route path="/" element={<NewTab />} />
+            </Routes>
+        </Router>
+    </div>
 }
 
 export default Main
