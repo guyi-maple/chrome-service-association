@@ -1,14 +1,13 @@
 import {request} from "../utils/request";
-import axios from "axios";
-import Const from "./const";
 import {Env, Service} from "../types";
+import auto from "../utils/auto";
 
 const Envs = {
     list: () => request<Env[]>({
-        request: axios.get(`${Const.Server}/env`)
+        request: auto.get('/env', {})
     }),
     association: (envId: string, serviceId: string) => request<Service[]>({
-        request: axios.get(`${Const.Server}/env/association?envId=${envId}&serviceId=${serviceId}`)
+        request: auto.get('/env/association', {envId, serviceId})
     })
 }
 
